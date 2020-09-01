@@ -14,7 +14,7 @@ import Login from './componentes/Login';
 
 
 const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const { Header, Content, Sider, Footer } = Layout;
 
 const App = () => {  
   const [collapsed, activador] = useState(false);
@@ -22,7 +22,7 @@ const App = () => {
   const [top, setTop] = useState(0);
 
   return(
-    <Layout>
+    <Layout style={{ minHeight: '100vh' }}>
       <Router>
         <Affix offsetTop={top}>
           <Header className="header">
@@ -35,12 +35,12 @@ const App = () => {
           </Header>    
         </Affix>
       <Layout>       
-        <Sider width={200} collapsible collapsed={collapsed} className="site-layout-background">
+        <Sider collapsible collapsed={collapsed} trigger={null}>
           <Menu
+            theme="dark" 
             mode="inline"
             defaultSelectedKeys={['1']}
             defaultOpenKeys={['sub1']}
-            style={{ height: '100%', borderRight: 0 }}
             >
             <SubMenu key="sub1" icon={<UserOutlined />} title="subnav 1">
               <Menu.Item key="1"><Link to="/home">option1</Link></Menu.Item>
@@ -63,7 +63,7 @@ const App = () => {
           </Menu>
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb style={{ margin: '0px 0' }}>
             <MenuFoldOutlined onClick={ () => activador(!collapsed)} className='trigger'/>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
@@ -74,7 +74,7 @@ const App = () => {
             style={{
               padding: 24,
               margin: 0,
-              minHeight: 280,
+              // minHeight: '100%'
             }}
             >
             <Switch>
@@ -82,6 +82,7 @@ const App = () => {
               <Route exact={true} path="/login" component={Login} />                
             </Switch>
           </Content>
+          <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
         </Layout>
       </Layout>
     </Router>
